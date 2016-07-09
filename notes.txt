@@ -1,0 +1,15 @@
+//show guests
+//show rsvp status
+
+change rsvp status
+check code
+
+
+db 
+
+name
+numAllowed
+numGoing
+address, phone, email
+
+
