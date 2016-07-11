@@ -6,6 +6,7 @@ var http = require('http').Server(app);
 var sequelize = require('sequelize');
 
 var seq = require('./models').seq;
+var Guest = require('./models').Guest;
 // var EventModel = require('./database').EventModel;
 // var Promise = require('bluebird');
 var PORT = process.env.PORT || 3000;
@@ -22,17 +23,19 @@ app.get('/')
 
 //gets events from a year
 //query strings will be in the format: ?limit=__
-app.get('/api/year/:year', function(req, res){
-  var limit = req.query.limit || '50';
-  console.log(limit)
-  var year = parseYear(req.params.year);
-  console.log(year)
-  return seq.query("(select year, score, text from event where year = '" + year + "' order by random() limit " + limit + ");", {type: sequelize.QueryTypes.SELECT})
-    .then(function(events){
-      console.log('got events', events.length, events)
-      return res.send(events);
-    });
+app.get('/api/guest/:code', function(req, res){
+  return Guest.findAll({
+    where: {
+      code: req.query.code
+    },
+    attributes: ['name', 'status', 'diet']
+  });
 });
+
+app.post('/api/rsvp', function (req, res) {
+  //update where code and name
+  //find by code and name?
+})
 
 //query strings will be in the format: ?min=__&max=__&perYear=__
 app.get('/api/range', function(req, res){

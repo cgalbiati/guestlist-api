@@ -36,13 +36,16 @@ var Guest = seq.define('guest', {
   status: Sequelize.ENUM('yes', 'no', 'unconfirmed'),
   address: Sequelize.TEXT,
   code: Sequelize.STRING,
-  phone: Sequelize.STRING
+  phone: Sequelize.STRING,
+  diet: Sequelize.STRING,
+  inviter: Sequelize.STRING,
+  group: Sequelize.STRING
 });
 
-var DietaryRest = seq.define('dietaryrest', {
-  type: Sequelize.STRING,
-  default: Sequelize.BOOLEAN
-});
+// var DietaryRest = seq.define('dietaryrest', {
+//   type: Sequelize.STRING,
+//   default: Sequelize.BOOLEAN
+// });
 
 
 // guest
@@ -64,5 +67,5 @@ var DietaryRest = seq.define('dietaryrest', {
 
 module.exports = {
   seq: seq,
-  EventModel: Event
+  Guest: Guest
 };
